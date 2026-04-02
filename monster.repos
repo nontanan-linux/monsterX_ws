@@ -1,0 +1,13 @@
+repositories:
+  Micro-XRCE-DDS-Agent:
+    type: git
+    url: https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+    version: 57d086216d01ec43121845d385894a25987f8a2c
+  mavros:
+    type: git
+    url: https://github.com/mavlink/mavros.git
+    version: ros2
+  path_coverage_planning:
+    type: git
+    url: https://github.com/nontanan-linux/path_coverage_planning.git
+    version: main

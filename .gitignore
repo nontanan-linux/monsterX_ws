@@ -12,3 +12,11 @@ __pycache__/
 
 # Compiled files
 *.so
+
+# Ignore the actual source code of packages (because they have their own repos)
+src/*/
+pass_git.txt
+
+# Ignore Python & OS junk
+__pycache__/
+.DS_Store
