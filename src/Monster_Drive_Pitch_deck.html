@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="th">
+<head>
+    <meta charset="utf-8">
+    <title>Pitch Deck: Autonomous Lawnmower</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/night.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS to prevent font overflow and ensure responsiveness */
+        .reveal { font-family: 'Kanit', sans-serif; }
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Kanit', sans-serif;
+            text-transform: none;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        /* Adjust heading sizes */
+        .reveal h1 { font-size: 1.8em; color: #4CAF50; margin-bottom: 20px; }
+        .reveal h2 { font-size: 1.4em; color: #8bc34a; margin-bottom: 30px; }
+        .reveal h3 { font-size: 1.1em; margin-bottom: 20px; }
+        
+        /* Adjust paragraph and list sizes */
+        .reveal p, .reveal li { font-size: 0.8em; line-height: 1.5; text-align: left; }
+        .reveal ul { display: block; width: 95%; margin: 0 auto; }
+        .reveal li { margin-bottom: 12px; }
+        
+        /* Table styling for Slide 8 */
+        .reveal table { font-size: 0.6em; width: 100%; margin-top: 10px; border-collapse: collapse; }
+        .reveal th, .reveal td { border: 1px solid #555; padding: 10px; }
+        .reveal th { background-color: #222; color: #fff; text-align: center; }
+        .reveal td { text-align: center; }
+        .reveal td.left-align { text-align: left; }
+        
+        /* Highlight colors */
+        .highlight { color: #ffeb3b; font-weight: 600; }
+        .highlight-red { color: #ff5252; font-weight: 600; }
+        
+        /* Special classes for specific slides */
+        .team-list li { font-size: 0.65em; margin-bottom: 8px; line-height: 1.3; }
+        .center-text { text-align: center !important; }
+        .sub-text { font-size: 0.85em; color: #ccc; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h1>รถตัดหญ้าอัตโนมัติ</h1>
+                <h3>นำทางด้วยระบบดาวเทียม (GNSS Base-station)</h3>
+                <br>
+                <p class="center-text" style="font-size: 0.9em;">แพลตฟอร์มหุ่นยนต์เกษตรสัญชาติไทย <br>นวัตกรรม In-house ตั้งแต่ต้นน้ำถึงปลายน้ำ</p>
+                <br><br>
+                <p class="center-text" style="font-size: 0.6em; color: #aaa;">นำเสนอโดย: นายสมภัทร แพรกนกแก้ว (CEO) และทีมงาน</p>
+            </section>
+
+            <section>
+                <h2 style="color: #ff5252;">1. วิกฤตและปัญหาของลูกค้า (Deep Pain Points)</h2>
+                <ul>
+                    <li style="margin-bottom: 18px;">
+                        <span class="highlight-red">💸 "กับดักการซ่อมบำรุง" ของเครื่องจักรนำเข้า (The Maintenance Trap):</span><br>
+                        <span class="sub-text">เครื่องจักรหรือหุ่นยนต์นำเข้าทำงานแบบระบบปิด เมื่อบอร์ดควบคุมพัง <b style="color:#fff;">ไม่สามารถซ่อมแซมชิ้นส่วนในไทยได้ ต้องสั่งเปลี่ยนยกแผงและรออะไหล่นาน</b> ส่งผลให้เกิดต้นทุนจม (Sunk Cost) และสูญเสียรายได้ในรอบการดูแลรักษา</span>
+                    </li>
+                    <li style="margin-bottom: 18px;">
+                        <span class="highlight-red">🚧 ข้อจำกัดที่ทำลายการขยายสเกลธุรกิจ (The Perimeter Wire Nightmare):</span><br>
+                        <span class="sub-text">หุ่นยนต์ตัดหญ้าส่วนใหญ่ต้องขึง "สายไฟขอบเขต" ซึ่ง <b style="color:#fff;">"เป็นไปไม่ได้เลยในเชิงปฏิบัติ" สำหรับพื้นที่เชิงพาณิชย์ขนาดใหญ่</b> (เช่น โซลาร์ฟาร์ม 50 ไร่) เพราะสายไฟขาดง่าย หาจุดซ่อมยาก สัตว์กัดแทะ และไม่สามารถย้ายแปลงทำงานได้อย่างอิสระ</span>
+                    </li>
+                    <li style="margin-bottom: 18px;">
+                        <span class="highlight-red">👷‍♂️ ต้นทุนแฝงจากแรงงานและความรับผิดชอบ (Hidden Costs & Liabilities):</span><br>
+                        <span class="sub-text">การใช้รถตัดหญ้านั่งขับหรือแรงงานคน มีความเสี่ยงสูงต่ออุบัติเหตุร้ายแรง ซึ่งถือเป็น <b style="color:#fff;">ความรับผิดชอบทางกฎหมายและต้นทุนแฝงก้อนใหญ่</b> ของเจ้าของกิจการท่ามกลางภาวะขาดแคลนแรงงาน</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>2. เทคโนโลยีหลัก (Core Tech)</h2>
+                <ul>
+                    <li>⚙️ <span class="highlight">Proprietary Motor Drive:</span> วงจรขับมอเตอร์พัฒนาเอง จำหน่ายจริงกว่า 5-6 ปี ทนทานงานหนัก (จุดแข็งสำคัญ)</li>
+                    <li>💻 <span class="highlight">In-house Control Board & UI:</span> กำลังพัฒนาบอร์ดควบคุมเอง ลดพึ่งพาบอร์ดสำเร็จรูปนำเข้า</li>
+                    <li>🛰️ <span class="highlight">GNSS Base-station Navigation:</span> นำทางพิกัดดาวเทียมความแม่นยำสูง ไม่ต้องพึ่งพาสัญญาณอินเทอร์เน็ต</li>
+                    <li>🤖 <span class="highlight">Smart Path & Teleoperation:</span> วางแผนเส้นทางอัตโนมัติ และควบคุมระยะไกลแบบเรียลไทม์ได้</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>3. คุณค่าที่ลูกค้าจะได้รับ</h2>
+                <ul>
+                    <li>🛠️ <span class="highlight">ซ่อมง่าย ลดต้นทุน (Cost-Effective):</span> เทคโนโลยีบอร์ด/Motor Drive พัฒนาเอง ทำให้เครื่องราคาเข้าถึงได้ และ "ซ่อม/เปลี่ยนอะไหล่ในไทยได้ทันที 100%"</li>
+                    <li>🚫 <span class="highlight">ไร้สายไฟขอบเขต (100% Wire-Free):</span> สร้างขอบเขตดิจิทัล ทำงานได้อิสระ ประหยัดเวลาติดตั้ง</li>
+                    <li>🇹🇭 <span class="highlight">UI เป็นมิตรกับคนไทย:</span> ออกแบบหน้าจอให้เกษตรกรเข้าใจง่าย ไม่ซับซ้อน</li>
+                    <li>🛡️ <span class="highlight">ปลอดภัยสูงสุด:</span> บังคับระยะไกล ผู้ใช้งานปลอดภัยจากอันตรายในแปลงเกษตร</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>4. โอกาสทางการตลาด (Market Opp.)</h2>
+                <ul>
+                    <li>🌍 <span class="highlight">TAM:</span> ตลาดเครื่องจักรกลการเกษตรและหุ่นยนต์บริการจัดการภูมิทัศน์ ในระดับอาเซียน</li>
+                    <li>🇹🇭 <span class="highlight">SAM:</span> ตลาด Smart Farming, พื้นที่เกษตรขนาดใหญ่ และโซลาร์ฟาร์ม ในประเทศไทย</li>
+                    <li>🎯 <span class="highlight">SOM:</span> ผู้รับเหมาตัดหญ้า เจ้าของสวนผลไม้/ไร่ขนาดใหญ่ และผู้ประกอบการโรงไฟฟ้า Solar Farm (เป้าหมายเจาะตลาด 1-3 ปีแรก)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>5. กลุ่มลูกค้าเป้าหมาย (Segments)</h2>
+                <ul>
+                    <li>🏢 <span class="highlight">B2B (องค์กรธุรกิจ):</span> กลุ่มธุรกิจพลังงาน/โซลาร์ฟาร์ม (เช่น EA, BCPG), กลุ่มธุรกิจเกษตรขนาดใหญ่, นิคมอุตสาหกรรม</li>
+                    <li>🏛️ <span class="highlight">B2G (ภาครัฐ):</span> กรมทางหลวง, องค์กรปกครองส่วนท้องถิ่น ที่ดูแลภูมิทัศน์</li>
+                    <li>🧑‍🌾 <span class="highlight">B2C (ผู้บริโภคทั่วไป):</span> เกษตรกรยุคใหม่ (Smart Farmers) และผู้รับเหมาตัดหญ้า</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>6. รูปแบบการสร้างรายได้ (Revenue)</h2>
+                <ul>
+                    <li>📦 <span class="highlight">Hardware Sales:</span> การขายรถตัดหญ้าอัตโนมัติพร้อมชุด Base-station (รายได้จากการขายเครื่อง)</li>
+                    <li>🔧 <span class="highlight">After-Sales & Maintenance:</span> รายได้จากการขายอะไหล่ (Motor Drive) และบริการบำรุงรักษารายปี (มีกำไรสูงเพราะผลิตอะไหล่เอง)</li>
+                    <li>🚀 <span class="highlight">Future Revenue (RaaS):</span> โมเดล Robot-as-a-Service ปล่อยเช่าเครื่องจักร และเก็บค่า Subscription การอัปเดตซอฟต์แวร์</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>7. การวิเคราะห์คู่แข่ง</h2>
+                <table>
+                    <tr>
+                        <th style="width: 25%;">คุณสมบัติ</th>
+                        <th style="width: 25%;">รถตัดหญ้าทั่วไป</th>
+                        <th style="width: 25%;">หุ่นยนต์นำเข้า</th>
+                        <th style="width: 25%; color: #ffeb3b;">รถตัดหญ้าของเรา</th>
+                    </tr>
+                    <tr>
+                        <td class="left-align"><b>การทำงาน</b></td>
+                        <td>ใช้คนขับ 100%</td>
+                        <td>อัตโนมัติ</td>
+                        <td><span class="highlight">อัตโนมัติ / รีโมท</span></td>
+                    </tr>
+                    <tr>
+                        <td class="left-align"><b>การตั้งค่าพื้นที่</b></td>
+                        <td>ขับไปตัดไป</td>
+                        <td>ฝังสายไฟขอบเขต</td>
+                        <td><span class="highlight">พิกัดดาวเทียม GNSS</span></td>
+                    </tr>
+                    <tr>
+                        <td class="left-align"><b>การซ่อมบำรุง</b></td>
+                        <td>ซ่อมตามอาการ</td>
+                        <td>รออะไหล่นาน<br>เปลี่ยนยกแผง</td>
+                        <td><span class="highlight">ผลิตบอร์ด/มอเตอร์เอง<br>ซ่อมไว อะไหล่ในไทย</span></td>
+                    </tr>
+                    <tr>
+                        <td class="left-align"><b>ราคา</b></td>
+                        <td>ปานกลาง</td>
+                        <td>สูงมาก</td>
+                        <td><span class="highlight">คุ้มค่า คืนทุนไว</span></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <h2>8. แผนพัฒนาผลิตภัณฑ์ (Roadmap)</h2>
+                <ul>
+                    <li>✅ <span class="highlight">Past (ความสำเร็จ):</span> พัฒนาเทคโนโลยี Motor Drive สำเร็จและจำหน่ายเชิงพาณิชย์ พิสูจน์ความทนทานมาแล้ว 5-6 ปี</li>
+                    <li>🚀 <span class="highlight">Present (AGROWTH 2026):</span> พัฒนาระบบ Control Board & UI, บูรณาการ GNSS, และร่วมทดสอบ (PoC) กับพาร์ทเนอร์</li>
+                    <li>🌟 <span class="highlight">Future (1-3 ปี):</span> ขยายสู่ระบบ Fleet Management ควบคุมรถแบบฝูง (Swarm) และพัฒนาแพลตฟอร์มติดอุปกรณ์เสริม</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>9. ทีมงานบริษัท (Team)</h2>
+                <ul class="team-list">
+                    <li><span class="highlight">สมภัทร แพรกนกแก้ว (CEO, 40):</span> วงจรไฟฟ้า อิเล็กทรอนิกส์กำลัง และ Motor Drive (ปสก. 20 ปี)</li>
+                    <li><span class="highlight">นนทนันธ์ สมมาตร์ (Auto Eng, 27):</span> พลศาสตร์ยานยนต์ ยานยนต์อัตโนมัติ (ปสก. 5 ปี)</li>
+                    <li><span class="highlight">วารุส โดงกูล (Auto Eng, 28):</span> ระบบไฟฟ้า CAN bus และระบบ GPS (ปสก. 4 ปี)</li>
+                    <li><span class="highlight">อานัส สาแม (Electronics Eng, 24):</span> ออกแบบวงจรไฟฟ้า อิเล็กทรอนิกส์กำลังและโปรแกรม (ปสก. 3 ปี)</li>
+                    <li><span class="highlight">นัฐพงศ์ พรหมแก้ว (Agri-Mech Expert, 26):</span> หุ่นยนต์ ระบบนำทาง GNSS และเทคโนโลยีเกษตร (ปสก. 4 ปี)</li>
+                    <li><span class="highlight">จีรพน บุญจริง (Machinist, 35):</span> ช่างกล ออกแบบกลไก งานกลึง และ Milling (ปสก. 15 ปี)</li>
+                </ul>
+                <p class="center-text" style="font-size: 0.7em; margin-top: 15px; color: #8bc34a;"><i>"Full-Stack Hardware Team พร้อมสร้างหุ่นยนต์การเกษตรสัญชาติไทยอย่างยั่งยืน"</i></p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1024,
+            height: 768,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0,
+            transition: 'slide' /* slide, fade, convex, concave, zoom */
+        });
+    </script>
+</body>
+</html>
