@@ -1,0 +1,5 @@
+repositories:
+  monster_web:
+    type: git
+    url: https://github.com/nontanan-linux/monster_web.git
+    version: main

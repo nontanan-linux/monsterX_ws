@@ -15,6 +15,7 @@ __pycache__/
 
 # Ignore the actual source code of packages (because they have their own repos)
 src/*/
+server/*/
 pass_git.txt
 
 # Ignore Python & OS junk
