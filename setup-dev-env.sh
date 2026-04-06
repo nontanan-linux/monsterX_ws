@@ -49,7 +49,7 @@ pip3 install --upgrade pip
 pip3 install numpy scipy matplotlib scikit-learn pandas
 
 # 6. Workspace Initialization
-echo -e "${GREEN}[6/6] Initializing MonsterX Workspace...${NC}"
+echo -e "${GREEN}[6/6] Initializing MonsterXPilot Workspace...${NC}"
 if [ -f "monster.repos" ]; then
     vcs import src < monster.repos
     sudo rosdep init || true
