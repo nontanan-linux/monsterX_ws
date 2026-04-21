@@ -1,0 +1,588 @@
+:root {
+    --primary-neon: #39FF14;
+    --primary-dark: #0a0a0a;
+    --accent-grey: #2a2a2a;
+    --text-main: #ffffff;
+    --text-dim: #b0b0b0;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #000; /* Pure black for letterboxing */
+    color: var(--text-main);
+    overflow: hidden;
+    line-height: 1.6;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-theme {
+    /* Moving theme background to body-level overlay or container */
+    background: radial-gradient(circle at 10% 20%, rgba(57, 255, 20, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(57, 255, 20, 0.03) 0%, transparent 40%);
+}
+
+.presentation-container {
+    width: 100vw;
+    height: 56.25vw; /* 16:9 ratio */
+    max-height: 100vh;
+    max-width: 177.78vh; /* 16:9 ratio */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-dark);
+    box-shadow: 0 0 100px rgba(0,0,0,1);
+    border: 1px solid rgba(255,255,255,0.05);
+    overflow: hidden;
+}
+
+/* Progress Bar */
+.progress-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--accent-grey);
+    z-index: 100;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 16.6%;
+    background: var(--primary-neon);
+    box-shadow: 0 0 15px var(--primary-neon);
+    transition: width 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+/* Slide Engine */
+main {
+    flex-grow: 1;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+}
+
+.slide-content {
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* Slide 2-5 Global Content Wrapper - 15% / 85% Split */
+.slide:not(#slide1):not(#slide6) .content-wrapper {
+    z-index: 2;
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Updated Header Style for Content Slides */
+.slide:not(#slide1):not(#slide6) .header-group {
+    flex: 0 0 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.slide:not(#slide1):not(#slide6) .header-group h2 {
+    font-size: 2.2rem;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Layout Components for Content Slides */
+.slide:not(#slide1):not(#slide6) .split-layout-container {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    gap: 60px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.split-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.split-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 20px;
+    border-left: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.split-list li h3, .split-list li h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--primary-neon);
+}
+
+.split-list li p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.split-list li:hover {
+    border-left-color: var(--primary-neon);
+    padding-left: 30px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Re-defining split inner components for reuse */
+.split-image-half {
+    flex: 55; /* 55% of horizontal space */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.split-image-half img, .image-stack img {
+    max-width: 100%;
+    max-height: 75vh;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    object-fit: contain;
+}
+
+.image-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.image-stack img {
+    max-height: 40vh; /* Half of the 85% area */
+    object-fit: cover;
+}
+
+.split-text-half {
+    flex: 45; /* 45% of horizontal space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Original Cover Content Restored */
+.cover-content {
+    margin-left: 60px;
+    margin-top: -50px;
+    z-index: 2;
+}
+
+.content-wrapper {
+    z-index: 2;
+    transition: transform 0.5s ease;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Presenter Info */
+.presenter-info {
+    position: absolute;
+    bottom: 50px;
+    left: 60px;
+    z-index: 20;
+    border-left: 4px solid var(--primary-neon);
+    padding-left: 20px;
+    text-align: left;
+}
+
+.presenter-info p {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.presenter-info span {
+    color: var(--primary-neon);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Backgrounds */
+.cover-slide {
+    background: url('images/monsterx_front.png') center/100% 100% no-repeat;
+    overflow: hidden;
+    justify-content: center; /* Vertical center */
+    align-items: flex-start; /* Horizontal left-start */
+    border-radius: 0; /* Full bleed for PPT feel */
+}
+
+.tech-bg {
+    background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, var(--primary-dark) 100%), url('images/tech.png') center/cover no-repeat;
+    border-radius: 20px;
+}
+
+.team-bg {
+    background: radial-gradient(circle at center, rgba(0,0,0,0.6) 0%, var(--primary-dark) 100%), url('images/team.png') center/cover no-repeat;
+    border-radius: 20px;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, transparent 80%);
+    z-index: 1;
+}
+
+/* Typography */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+h2.neon-text {
+    font-size: 1.5rem;
+    color: var(--primary-neon);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: var(--primary-neon);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    border-left: 6px solid var(--primary-neon);
+    padding-left: 20px;
+}
+
+/* Logos */
+.logo-container {
+    position: absolute;
+    top: 30px;
+    left: 60px;
+    display: flex;
+    gap: 15px; /* Spacing between logos */
+    align-items: center;
+    z-index: 5;
+}
+
+.event-logo, .company-logo {
+    height: 50px; /* Slightly smaller for togetherness */
+    width: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+    transition: transform 0.3s;
+}
+
+.event-logo:hover, .company-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 20px;
+    border-radius: 15px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.team-photo-bottom {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.team-photo-bottom img {
+    max-width: 100%; /* Expand to full width */
+    width: auto;
+    max-height: 400px; /* Signficantly larger */
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.closing-statement {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--primary-neon);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-neon);
+}
+
+/* Grid Layouts */
+.grid-container, .tech-grid, .team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.viability-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.stat-num {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-neon);
+}
+
+.stat-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Roadmap */
+.roadmap-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ==========================================================================
+   Print Styles (PDF Export Support)
+   ========================================================================== */
+@media print {
+    @page {
+        size: 1920px 1080px;
+        margin: 0;
+    }
+
+    body, html {
+        height: auto !important;
+        overflow: visible !important;
+        background: #000 !important;
+    }
+
+    /* Force background printing */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    .main-container {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    /* Make all slides visible for printing */
+    .slide {
+        display: flex !important;
+        position: relative !important;
+        height: 1080px !important;
+        width: 1920px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        overflow: hidden !important; /* Prevent extra blank pages */
+    }
+
+    /* Disable animations for printing */
+    .animate-up, .animate-left, .animate-right, .animate-fade {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        transition: none !important;
+        animation: none !important;
+    }
+
+    /* Hide Navigation UI */
+    .nav-controls, .side-nav, .scroll-indicator, .nav-hint {
+        display: none !important;
+    }
+
+    /* Ensure split layouts don't break */
+    .split-layout-container {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 60px !important;
+        height: 85% !important;
+    }
+
+    .split-image-half, .split-text-half {
+        flex: none !important;
+        width: 55% !important;
+    }
+    
+    .split-text-half {
+        width: 45% !important;
+    }
+
+    /* Maintain Glassmorphism appearance */
+    .glass-card {
+        background: rgba(20, 25, 20, 0.8) !important;
+        border: 1px solid rgba(0, 255, 0, 0.3) !important;
+    }}
+.team-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.team-member h5 {
+    color: var(--primary-neon);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.closing-statement {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--primary-neon);
+}
+
+/* Navigation Controls */
+.navigation-controls {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+}
+
+.nav-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+}
+
+.nav-btn:hover {
+    background: var(--primary-neon);
+    color: black;
+    box-shadow: 0 0 15px var(--primary-neon);
+}
+
+.slide-number {
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleUp {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.animate-up { animation: fadeInUp 0.8s forwards; }
+.animate-left { animation: fadeInLeft 0.8s forwards; }
+.animate-right { animation: fadeInRight 0.8s forwards; }
+.animate-fade { animation: fadeInUp 0.8s forwards; }
+.animate-scale { animation: scaleUp 0.8s forwards; }
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+
+/* In-slide Content reset for animations */
+.slide .animate-up, .slide .animate-left, .slide .animate-right, .slide .animate-scale, .slide .animate-fade {
+    opacity: 0;
+}
+
+.active .animate-up, .active .animate-left, .active .animate-right, .active .animate-scale, .active .animate-fade {
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    h1 { font-size: 2.2rem; }
+    .grid-container, .tech-grid, .team-grid, .viability-cards {
+        grid-template-columns: 1fr;
+    }
+    .slide { padding: 20px; }
+}
